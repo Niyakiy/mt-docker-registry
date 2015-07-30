@@ -55,3 +55,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+
+
+# MT-DOCKER-REGISTRY related ignores
+mt-reg*
+build-works*
+registry*
+lost*
+
