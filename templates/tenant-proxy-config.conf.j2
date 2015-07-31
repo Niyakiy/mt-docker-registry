@@ -1,4 +1,4 @@
-{% for tenant in tenats -%}
+{% for tenant in tenants %}
 upstream {{tenant.name}} {
   server {{tenant.name}}-registry:{{tenant.port}};
 }
@@ -27,7 +27,7 @@ server {
 
     # To add basic authentication to v2 use auth_basic setting plus add_header
     auth_basic 				"Zoomdata (for $tenant_name) MSA docker registry";
-    auth_basic_user_file 		/etc/nginx/conf.d/$tenant_name.htpasswd;
+    auth_basic_user_file 		/etc/nginx/auth/$tenant_name.htpasswd;
 
     add_header 				'Docker-Distribution-Api-Version' 'registry/2.0' always;
 
