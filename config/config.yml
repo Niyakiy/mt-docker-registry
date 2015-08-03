@@ -1,0 +1,7 @@
+# path to folder where regsitries will be stored
+mtregistry_root_path: /var/mt-docker-registry
+
+# names of tenants [a-zA-Z0-9] allowed!
+tenants:
+  - customer1
+  - customer2

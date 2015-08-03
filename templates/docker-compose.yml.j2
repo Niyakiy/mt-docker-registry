@@ -1,23 +1,21 @@
-nginx-proxy:
-  image: "nginx:1.9"
+nginxproxy:
+  image: nginx:1.9
   ports:
     - 443:443
   links:
-{% for tenant in tenants %}
-	- {{tenant.name}}-registry:{{tenant.name}}-registry
+{%- for tenant in tenants %}
+    - {{tenant}}registry:{{tenant}}registry
 {%- endfor %}
   volumes:
-	- {{root_path}}/configs:/etc/nginx/conf.d
-	- {{root_path}}/auth:/etc/nginx/auth
+    - {{root_path}}/config:/etc/nginx/conf.d
+    - {{root_path}}/auth:/etc/nginx/auth
 
 {% for tenant in tenants %}
-{{tenant.name}}-registry:
+{{tenant}}registry:
   image: registry:2
-  ports:
-    - 127.0.0.1:{{tenant.port}}:5000
   environment:
     REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
   volumes:
-    - {{root_path}}/registries/{{tenant.name}}:/data
+    - {{root_path}}/registries/{{tenant}}:/data
 {% endfor %}
 
